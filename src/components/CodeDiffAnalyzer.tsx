@@ -130,32 +130,6 @@ const CodeDiffAnalyzer = () => {
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
-              <div className="relative">
-                <Textarea
-                  placeholder={`Example:
-- function oldMethod() {
--   return data.value;
-- }
-+ function newMethod() {
-+   return data?.value || defaultValue;
-+ }`}
-                  value={codeDiff}
-                  onChange={(e) => setCodeDiff(e.target.value)}
-                  className="min-h-[300px] font-mono text-sm resize-none bg-muted/50 border-border/50 focus:border-primary/50 focus:ring-primary/20"
-                />
-              </div>
-              
-              {codeDiff && (
-                <div className="mt-4">
-                  <h4 className="text-sm font-medium mb-2 text-muted-foreground">Preview:</h4>
-                  <div className="bg-muted/30 rounded-lg border border-border/50 overflow-hidden">
-                    <div className="code-diff max-h-32 overflow-y-auto">
-                      {formatCodeDiff(codeDiff)}
-                    </div>
-                  </div>
-                </div>
-              )}
-
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="space-y-2">
                   <Label htmlFor="jira-id" className="text-sm font-medium">
@@ -183,7 +157,33 @@ const CodeDiffAnalyzer = () => {
                   />
                 </div>
               </div>
+
+              <div className="relative">
+                <Textarea
+                  placeholder={`Example:
+- function oldMethod() {
+-   return data.value;
+- }
++ function newMethod() {
++   return data?.value || defaultValue;
++ }`}
+                  value={codeDiff}
+                  onChange={(e) => setCodeDiff(e.target.value)}
+                  className="min-h-[300px] font-mono text-sm resize-none bg-muted/50 border-border/50 focus:border-primary/50 focus:ring-primary/20"
+                />
+              </div>
               
+              {codeDiff && (
+                <div className="mt-4">
+                  <h4 className="text-sm font-medium mb-2 text-muted-foreground">Preview:</h4>
+                  <div className="bg-muted/30 rounded-lg border border-border/50 overflow-hidden">
+                    <div className="code-diff max-h-32 overflow-y-auto">
+                      {formatCodeDiff(codeDiff)}
+                    </div>
+                  </div>
+                </div>
+              )}
+
               <Button
                 onClick={handleAnalyze} 
                 disabled={isAnalyzing || !codeDiff.trim()}
