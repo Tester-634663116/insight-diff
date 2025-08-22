@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Copy, Loader2, Zap, AlertTriangle, CheckCircle, Code } from 'lucide-react';
@@ -13,6 +15,8 @@ interface AnalysisResult {
 
 const CodeDiffAnalyzer = () => {
   const [codeDiff, setCodeDiff] = useState('');
+  const [jiraId, setJiraId] = useState('');
+  const [prdUrl, setPrdUrl] = useState('');
   const [isAnalyzing, setIsAnalyzing] = useState(false);
   const [analysisResult, setAnalysisResult] = useState<AnalysisResult | null>(null);
   const { toast } = useToast();
@@ -151,8 +155,36 @@ const CodeDiffAnalyzer = () => {
                   </div>
                 </div>
               )}
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="space-y-2">
+                  <Label htmlFor="jira-id" className="text-sm font-medium">
+                    Jira ID (Optional)
+                  </Label>
+                  <Input
+                    id="jira-id"
+                    placeholder="e.g. PROJ-1234"
+                    value={jiraId}
+                    onChange={(e) => setJiraId(e.target.value)}
+                    className="bg-muted/50 border-border/50 focus:border-primary/50"
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="prd-url" className="text-sm font-medium">
+                    PRD URL (Optional)
+                  </Label>
+                  <Input
+                    id="prd-url"
+                    type="url"
+                    placeholder="https://..."
+                    value={prdUrl}
+                    onChange={(e) => setPrdUrl(e.target.value)}
+                    className="bg-muted/50 border-border/50 focus:border-primary/50"
+                  />
+                </div>
+              </div>
               
-              <Button 
+              <Button
                 onClick={handleAnalyze} 
                 disabled={isAnalyzing || !codeDiff.trim()}
                 className="w-full bg-gradient-primary hover:opacity-90 glow-effect"
