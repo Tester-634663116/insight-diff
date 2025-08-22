@@ -117,6 +117,39 @@ const CodeDiffAnalyzer = () => {
           </div>
         </div>
 
+        {/* Optional Fields */}
+        <Card className="glass-card">
+          <CardContent className="pt-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="space-y-2">
+                <Label htmlFor="jira-id" className="text-sm font-medium">
+                  Jira ID (Optional)
+                </Label>
+                <Input
+                  id="jira-id"
+                  placeholder="e.g. PROJ-1234"
+                  value={jiraId}
+                  onChange={(e) => setJiraId(e.target.value)}
+                  className="bg-muted/50 border-border/50 focus:border-primary/50"
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="prd-url" className="text-sm font-medium">
+                  PRD URL (Optional)
+                </Label>
+                <Input
+                  id="prd-url"
+                  type="url"
+                  placeholder="https://..."
+                  value={prdUrl}
+                  onChange={(e) => setPrdUrl(e.target.value)}
+                  className="bg-muted/50 border-border/50 focus:border-primary/50"
+                />
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
         <div className="grid lg:grid-cols-2 gap-8">
           {/* Input Section */}
           <Card className="glass-card">
@@ -130,33 +163,6 @@ const CodeDiffAnalyzer = () => {
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div className="space-y-2">
-                  <Label htmlFor="jira-id" className="text-sm font-medium">
-                    Jira ID (Optional)
-                  </Label>
-                  <Input
-                    id="jira-id"
-                    placeholder="e.g. PROJ-1234"
-                    value={jiraId}
-                    onChange={(e) => setJiraId(e.target.value)}
-                    className="bg-muted/50 border-border/50 focus:border-primary/50"
-                  />
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="prd-url" className="text-sm font-medium">
-                    PRD URL (Optional)
-                  </Label>
-                  <Input
-                    id="prd-url"
-                    type="url"
-                    placeholder="https://..."
-                    value={prdUrl}
-                    onChange={(e) => setPrdUrl(e.target.value)}
-                    className="bg-muted/50 border-border/50 focus:border-primary/50"
-                  />
-                </div>
-              </div>
 
               <div className="relative">
                 <Textarea
